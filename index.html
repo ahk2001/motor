@@ -85,12 +85,12 @@
       color: var(--text-body);
       background-color: var(--neutral-canvas);
       -webkit-font-smoothing: antialiased;
-      overflow-x: clip;
+      overflow-x: hidden;
     }
 
     body {
       min-height: 100vh;
-      overflow-x: clip;
+      overflow-x: hidden;
       line-height: 1.65;
       background-color: var(--neutral-canvas);
     }
@@ -242,6 +242,16 @@
       transition: all 0.25s var(--ease-editorial);
       white-space: nowrap;
       cursor: pointer;
+      box-sizing: border-box;
+      max-width: 100%;
+    }
+
+    @media (max-width: 640px) {
+      .btn-editorial {
+        white-space: normal;
+        text-align: center;
+        padding: 13px 20px;
+      }
     }
 
     .btn-editorial:active {
@@ -1298,6 +1308,42 @@
       border-top: 1px solid var(--neutral-border-dark);
     }
 
+    .puntos-cta-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+      margin-top: 2rem;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .puntos-cta-buttons .btn-editorial {
+      width: 100%;
+      justify-content: center;
+      text-align: center;
+      white-space: normal;
+      padding: 14px 20px;
+      font-size: 0.95rem;
+      box-sizing: border-box;
+    }
+
+    @media (min-width: 640px) {
+      .puntos-cta-buttons {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 1.25rem;
+        margin-top: 3rem;
+        width: auto;
+      }
+
+      .puntos-cta-buttons .btn-editorial {
+        width: auto;
+        white-space: nowrap;
+        padding: 14px 30px;
+        font-size: 0.98rem;
+      }
+    }
+
     /* ==========================================================================
        8. HUB PROFESIONAL: CAP, ADR Y MAQUINARIA (GRID 2x2 COMPACTO Y EQUILIBRADO)
        ========================================================================== */
@@ -1911,23 +1957,37 @@
        ========================================================================== */
     .contact-editorial-section {
       background: var(--neutral-canvas);
+      overflow: hidden;
     }
 
     .contact-architectural-grid {
       display: grid;
-      grid-template-columns: 1fr;
+      grid-template-columns: minmax(0, 1fr);
       border: 1px solid var(--neutral-border);
       background: var(--pure-white);
+      min-width: 0;
+      width: 100%;
+      box-sizing: border-box;
+      overflow: hidden;
     }
 
     @media (min-width: 1024px) {
       .contact-architectural-grid {
-        grid-template-columns: 1.15fr 0.85fr;
+        grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
       }
     }
 
     .contact-text-column {
-      padding: 3rem 2.5rem;
+      padding: 2.25rem 1.25rem;
+      min-width: 0;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    @media (min-width: 640px) {
+      .contact-text-column {
+        padding: 3rem 2.5rem;
+      }
     }
 
     @media (min-width: 768px) {
@@ -1938,17 +1998,29 @@
 
     .contact-details-table {
       display: grid;
-      grid-template-columns: 1fr;
-      gap: 2rem;
-      margin: 2.5rem 0 3rem;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 1.75rem;
+      margin: 2rem 0 2.5rem;
       border-top: 1px solid var(--neutral-border);
-      padding-top: 2rem;
+      padding-top: 1.75rem;
+      min-width: 0;
+      width: 100%;
+      box-sizing: border-box;
     }
 
     @media (min-width: 640px) {
       .contact-details-table {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 2rem;
+        margin: 2.5rem 0 3rem;
+        padding-top: 2rem;
       }
+    }
+
+    .contact-field-item {
+      min-width: 0;
+      word-break: break-word;
+      overflow-wrap: break-word;
     }
 
     .contact-field-item label {
@@ -1966,6 +2038,8 @@
       font-weight: 700;
       color: var(--text-black);
       line-height: 1.45;
+      word-break: break-word;
+      overflow-wrap: anywhere;
     }
 
     .contact-field-item span {
@@ -1974,17 +2048,61 @@
       font-weight: 400;
     }
 
+    .contact-cta-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .contact-cta-buttons .btn-editorial {
+      width: 100%;
+      justify-content: center;
+      text-align: center;
+      white-space: normal;
+      padding: 14px 20px;
+      font-size: 0.95rem;
+      box-sizing: border-box;
+    }
+
+    @media (min-width: 640px) {
+      .contact-cta-buttons {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 1.25rem;
+        width: auto;
+      }
+
+      .contact-cta-buttons .btn-editorial {
+        width: auto;
+        white-space: nowrap;
+        padding: 14px 30px;
+        font-size: 0.98rem;
+      }
+    }
+
     .contact-photo-column {
       position: relative;
       background: var(--pure-black);
-      min-height: 400px;
+      min-height: 280px;
       border-top: 1px solid var(--neutral-border);
+      min-width: 0;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    @media (min-width: 640px) {
+      .contact-photo-column {
+        min-height: 360px;
+      }
     }
 
     @media (min-width: 1024px) {
       .contact-photo-column {
         border-top: none;
         border-left: 1px solid var(--neutral-border);
+        min-height: 400px;
       }
     }
 
@@ -1992,14 +2110,22 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      display: block;
     }
 
     .contact-photo-overlay {
       position: absolute;
       inset: auto 0 0 0;
-      padding: 2rem;
+      padding: 1.25rem;
       background: linear-gradient(to top, rgba(18, 20, 23, 0.95), transparent);
       color: var(--pure-white);
+      box-sizing: border-box;
+    }
+
+    @media (min-width: 640px) {
+      .contact-photo-overlay {
+        padding: 2rem;
+      }
     }
 
     /* ==========================================================================
@@ -2747,7 +2873,7 @@
             </p>
           </div>
 
-          <div style="display:flex; flex-wrap:wrap; gap:1.25rem; margin-top:3rem;" class="reveal-on-scroll delay-3">
+          <div class="puntos-cta-buttons reveal-on-scroll delay-3">
             <a href="https://wa.me/34620606418?text=%C2%A1Hola!%20Necesito%20consultar%20sobre%20los%20cursos%20de%20recuperaci%C3%B3n%20de%20puntos%20de%20la%20DGT%20en%20Elche.%20%C2%BFMe%20pod%C3%A9is%20indicar%20pr%C3%B3ximas%20fechas%20disponibles%2C%20duraci%C3%B3n%20y%20coste%3F" target="_blank" rel="noopener noreferrer" class="btn-editorial btn-blue">
               Consultar Fechas y Requisitos
             </a>
@@ -3232,12 +3358,12 @@
 
             <div class="contact-field-item">
               <label>Correo Electrónico</label>
-              <p><a href="mailto:autoescuelamotor.altabix@gmail.com" style="color:var(--brand-blue); word-break:break-all; font-size:0.95rem;">autoescuelamotor.altabix@gmail.com</a></p>
+              <p><a href="mailto:autoescuelamotor.altabix@gmail.com" style="color:var(--brand-blue); word-break:break-all; overflow-wrap:anywhere; font-size:0.92rem;">autoescuelamotor.altabix@gmail.com</a></p>
               <span>Consultas y documentación</span>
             </div>
           </div>
 
-          <div style="display:flex; flex-wrap:wrap; gap:1.25rem;">
+          <div class="contact-cta-buttons">
             <a href="https://wa.me/34620606418?text=%C2%A1Hola!%20Quiero%20informaci%C3%B3n%20para%20sacarme%20el%20carnet%20de%20conducir%20(Permiso%20B)%20en%20Autoescuela%20Motor.%20%C2%BFQu%C3%A9%20promociones%20y%20tarifas%20ten%C3%A9is%20disponibles%20en%20el%20centro%20de%20Altabix%3F" target="_blank" rel="noopener noreferrer" class="btn-editorial btn-blue">
               Escribir por WhatsApp
             </a>
